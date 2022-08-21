@@ -27,8 +27,6 @@ class CloudLevels:
                     level['Band Offset'] = (max(price_range) - min(price_range)) / (tick_size * 2)
                 self.level_dicts.append(level)
         self.level_dicts.sort(key=lambda x: x['Priority'])
-        if pd_query:
-            pass
         
     def to_csv(self, filepath):
         rows = [{k: d[k] for k in d if k in self.fieldnames} for d in self.level_dicts]
