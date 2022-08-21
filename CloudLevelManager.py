@@ -1,17 +1,11 @@
 # -*- coding: utf-8 -*-
-
-#%% imports
 import csv
 
-#%% class
 class CloudLevels:
-    fieldnames = [
-        'Symbol', 'Price', 'Label', 'Text Color', 'Line Color', 'Band Color',
-        'Band Offset', 'Show Label', 'Show Price',
-        ]
+    fieldnames = ['Symbol', 'Price', 'Label', 'Text Color', 'Line Color', 'Band Color',
+        'Band Offset', 'Show Label', 'Show Price',]
     default_template = {'Label': 'Misc', 'Text Color': '#FFFFFF', 'Line Color': '#808080', 'Band Color': '#808080', 
         'Band Offset': 0, 'Show Label': 'Y', 'Show Price': 'Y', 'Priority': 0,}
-
 
     def __init__(self, symbol, levels, templates={}, tick_size=0.01):
         _levels = levels.copy()
@@ -42,7 +36,7 @@ class CloudLevels:
             writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
             writer.writeheader()
             writer.writerows(rows)
-            
+
 def range_bands_from_list(symbol, price_list, template1, template2, tick_size=0.01):
     bands = {1: template1, 2: template2}
     band = 1
