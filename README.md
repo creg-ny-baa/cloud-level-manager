@@ -1,14 +1,15 @@
 # CloudLevelManager
 A Pythonic way to maintain and generate cloud levels for the EdgeProX and MotiveWave trading platforms.
-
-Use templates instead of cutting and pasting lines in a CSV file.
+- No need to cut and paste lines of CSV
+- Templating
+- Automation
 
 # The Basics
-Import the module:
+It's not a package -- just one file.  Place `CloudLevelManager.py` in your working path and import the module:
 ```python
 from CloudLevelManager import CloudLevels
 ```
-The most basic example -- we'll talk about the structure a little bit later
+The most basic example -- we'll talk about the structure a little bit later:
 ```python
 levels = {
     'support/resistance': [
@@ -28,10 +29,7 @@ We can do better, and there are two ways to do that:
 - Explicitely for each level
 
 ## Templates
-The top level dictionary key is a template name.
-
-Notice that we did not define 'default_template' in the example above...
-The CloudLevelManager provides default values for any template name or attributes that are missing or not defined.
+The top level dictionary key is a template name. In the example above that is the `support/resistance` string.  Because we did not specify a template with that name, CloudLevelManager applied a default template.  It provides default values for any template name or attributes that are missing or not defined.
 
 Let's make a template:
 ```python
