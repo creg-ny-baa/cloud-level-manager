@@ -8,8 +8,12 @@ class CloudLevels:
         'Band Offset': 0, 'Show Label': 'Y', 'Show Price': 'Y', 'Priority': 0,}
 
     def __init__(self, symbol, levels, templates={}, tick_size=0.01):
-        _levels = levels.copy()
-        # provide a default template
+        if isinstance(levels, list):
+            _levels = {}
+            for d in levels:
+                _levels.update(d)
+        else:
+            _levels = levels.copy()
         self.level_dicts = []
         for k,v in _levels.items():
             template = templates.get(k, self.default_template) # use default if name missing
