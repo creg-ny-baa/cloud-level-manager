@@ -79,8 +79,7 @@ cl_sr.to_csv('es-sr-levels.csv')
 #%% export master levels
 # this is a good example of why you should mange groups separately--
 # becuase you can export individualy or roll them up like so:
-es_master_levels = {**es_stats, **es_sr, **es_technicals}
-cl_master = CloudLevels('ES', es_master_levels, templates=standard_templates, tick_size=0.25)
+cl_master = CloudLevels('ES', [es_stats, es_sr, es_technicals], templates=standard_templates, tick_size=0.25)
 cl_master.to_csv('es-key-levels.csv')
 #%% export market profile levels
 cl_mp = CloudLevels('ES', es_market_profile, templates=standard_templates, tick_size=0.25)
