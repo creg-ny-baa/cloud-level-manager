@@ -104,13 +104,6 @@ my_templates['single print'] = {'Label': 'Single Print',
         'Text Color': '#FFFFFF', 'Line Color': '#FFAAE2', 'Band Color': '#FFAAE2',
         'Priority': -8,}
 levels = {
-    'pivot': [
-        {'Price': 4282.25},
-        ],
-    'support/resistance': [
-        {'Price': 4309.50},
-        {'Price': 4249.50},
-        ],
     'single print': [
         {'Price Range': [4251.00, 4249.25]}, # order does not matter
         {'Price Range': [4240.00, 4243.50]}, # high/low or low/high
@@ -123,6 +116,30 @@ cl.to_csv('my_cloud_levels.csv')
 Note that the 'tick_size' attribute is important here, as the band offset is in
 ticks, not real numbers.  That limitation will also make some bands be off by
 half a tick.  Nothing we can do about that.
+
+## Multiple Dictionaries
+So far, our levels have all been in a single `dict` object.  No problem if you manage your level groups separately -- you can hand CloudLevelManager a list of dicts:
+
+```python
+tech_levels = {
+    'pivot': [
+        {'Price': 4282.25, 'Label': 'Central Pivot', 'Band Offset': 0},
+        ],
+    'support/resistance': [
+        {'Price': 4309.50, 'Label': 'R1'},
+        {'Price': 4249.50, 'Label': 'R2'},
+        ],
+    }
+tpo_levels = {
+    'single print': [
+        {'Price Range': [4251.00, 4249.25]}, # order does not matter
+        {'Price Range': [4240.00, 4243.50]}, # high/low or low/high
+        {'Price Range': [4067.25, 4064.50]},
+        ],
+    }
+cl = CloudLevels('ES', [tech_levels, tpo_levels], templates=my_templates, tick_size=0.25)
+cl.to_csv('my_cloud_levels.csv')
+```
 
 ## Next steps
 Hopefully templating gives you a more flexible and manageable way to maintain
