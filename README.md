@@ -1,6 +1,7 @@
 # CloudLevelManager
 A Pythonic way to maintain and generate cloud levels for the EdgeProX and MotiveWave trading platforms.
 - No need to cut and paste lines of CSV
+- Control draw order
 - Templating
 - Automation
 
