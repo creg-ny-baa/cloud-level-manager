@@ -32,6 +32,10 @@ class CloudLevels:
                 self.level_dicts.append(level)
         self.level_dicts.sort(key=lambda x: x['Priority'])
         
+    def adjust_price(self, delta):
+        for d in self.level_dicts:
+            d['Price'] = d['Price'] + delta
+        
     def to_csv(self, filepath):
         rows = [{k: d[k] for k in d if k in self.fieldnames} for d in self.level_dicts]
         with open(filepath, 'w', newline='') as csvfile:
